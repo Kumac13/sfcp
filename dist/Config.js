@@ -1,6 +1,10 @@
 "use strict";
 exports.__esModule = true;
-exports.config = void 0;
+exports.readConfig = void 0;
 var fs = require("fs");
-var content = fs.readFileSync("./config.json", 'utf8');
-exports.config = JSON.parse(content);
+var readConfig = function (path) {
+    var content = fs.readFileSync(path, "utf8");
+    var config = JSON.parse(content);
+    return config;
+};
+exports.readConfig = readConfig;

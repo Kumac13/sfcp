@@ -1,4 +1,7 @@
 import * as fs from "fs";
-var content = fs.readFileSync("./config.json", 'utf8');
-export const config = JSON.parse(content);
 
+export const readConfig = (path: string): any => {
+  const content = fs.readFileSync(path, "utf8");
+  const config = JSON.parse(content);
+  return config;
+};
