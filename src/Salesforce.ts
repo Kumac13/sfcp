@@ -1,5 +1,5 @@
-import { config } from "./Config";
 import { Connection } from "jsforce";
+import { readConfig } from "./Config"
 
 type UserConfig = {
   username: string;
@@ -9,9 +9,11 @@ type UserConfig = {
 
 export class Salesforce {
   private conn: Connection;
+  private userConfig: UserConfig;
 
-  constructor(private readonly config: UserConfig) {
+  constructor() {
     this.conn = new Connection({loginUrl: "https://login.salesforce.com"})
+    this.userConfig  = readConfig("./config.json")
   }
 
   public async set(){
@@ -25,7 +27,7 @@ export class Salesforce {
   }
 
   private async login() {
-    await this.conn.login(this.config.username, this.config.password);
+    await this.conn.login(this.userConfig.username, this.userConfig.password);
   }
 
 

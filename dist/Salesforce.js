@@ -38,10 +38,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.Salesforce = void 0;
 var jsforce_1 = require("jsforce");
+var Config_1 = require("./Config");
 var Salesforce = /** @class */ (function () {
-    function Salesforce(config) {
-        this.config = config;
+    function Salesforce() {
         this.conn = new jsforce_1.Connection({ loginUrl: "https://login.salesforce.com" });
+        this.userConfig = Config_1.readConfig("./config.json");
     }
     Salesforce.prototype.set = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -73,7 +74,7 @@ var Salesforce = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.conn.login(this.config.username, this.config.password)];
+                    case 0: return [4 /*yield*/, this.conn.login(this.userConfig.username, this.userConfig.password)];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];
