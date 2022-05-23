@@ -1,4 +1,4 @@
-import { readConfig } from "./Config";
+import { readConfig } from "./Config.js";
 
 type QueryCondition = {
   key: string;

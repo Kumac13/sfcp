@@ -1,5 +1,5 @@
-import { Connection } from "jsforce";
-import { readConfig } from "./Config"
+import jsforce from "jsforce";
+import { readConfig } from "./Config.js"
 
 type UserConfig = {
   username: string;
@@ -8,11 +8,11 @@ type UserConfig = {
 
 
 export class Salesforce {
-  private conn: Connection;
+  private conn: jsforce.Connection;
   private userConfig: UserConfig;
 
   constructor() {
-    this.conn = new Connection({loginUrl: "https://login.salesforce.com"})
+    this.conn = new jsforce.Connection({loginUrl: "https://login.salesforce.com"})
     this.userConfig  = readConfig("./config.json")
   }
 

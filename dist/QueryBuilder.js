@@ -1,4 +1,4 @@
-import { readConfig } from "./Config";
+import { readConfig } from "./Config.js";
 export class QueryBuilder {
     constructor(input) {
         this.input = input;

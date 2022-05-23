@@ -1,5 +1,5 @@
-import { Salesforce }   from "./Salesforce";
-import { QueryBuilder } from "./QueryBuilder";
+import { Salesforce }   from "./Salesforce.js";
+import { QueryBuilder } from "./QueryBuilder.js";
 import alfy from "alfy"
 
 (async () => {
