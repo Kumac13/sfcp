@@ -60,7 +60,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>./node_modules/.bin/run-node index.js "$1"</string>
+				<string>./node_modules/.bin/run-node dist/index.js "$1"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -115,9 +115,9 @@
 		<key>8C1BAE14-B1D2-4C26-BA1A-8132EE009F5C</key>
 		<dict>
 			<key>xpos</key>
-			<integer>455</integer>
+			<integer>470</integer>
 			<key>ypos</key>
-			<integer>250</integer>
+			<integer>245</integer>
 		</dict>
 	</dict>
 	<key>webaddress</key>
