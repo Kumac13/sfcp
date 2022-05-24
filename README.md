@@ -22,7 +22,7 @@ npx alfy-init
 ```json
 {
   "limit": 5,
-  "": [
+  "queryConditions": [
     {
       "key": "sample",
       "object": "Account",
