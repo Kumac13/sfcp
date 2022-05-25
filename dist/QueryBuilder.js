@@ -6,14 +6,15 @@ export class QueryBuilder {
     call() {
         let result = {
             isQueryExist: false,
-            query: '',
-            object: "Account",
+            query: "",
+            object: ""
         };
         let queryConfig = this.getConfig();
         let selectedQuery = this.querySelect(queryConfig);
         if (selectedQuery !== null) {
             result.query = this.creatQuery(selectedQuery, queryConfig.limit);
             result.isQueryExist = true;
+            result.object = selectedQuery.object;
         }
         return result;
     }
@@ -22,18 +23,15 @@ export class QueryBuilder {
         return queryConfig;
     }
     querySelect(queryConfig) {
+        let result = null;
         let queryConditions = queryConfig.queryConditions;
-        let queryCondition = { key: "", object: "", condition: "" };
         for (let condition of queryConditions) {
             if (this.input == condition.key) {
-                queryCondition = condition;
-                return queryCondition;
-            }
-            else {
-                return null;
+                result = condition;
+                return result;
             }
         }
-        return queryCondition;
+        return result;
     }
     creatQuery(queryConidition, limit) {
         let result = `SELECT Id, Name FROM ${queryConidition.object} ${queryConidition.condition} Limit ${limit}`;
