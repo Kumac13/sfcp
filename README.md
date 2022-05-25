@@ -1,4 +1,4 @@
-# sfqb
+# sfcp
 
 ## Install
 - clone this repository

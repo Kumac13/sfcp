@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>com.sfqb</string>
+	<string>com.sfcp</string>
 	<key>category</key>
 	<string>Tools</string>
 	<key>connections</key>
@@ -29,7 +29,7 @@
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>sfqb</string>
+	<string>sfcp</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -48,7 +48,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>sfqb</string>
+				<string>sfcp</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
