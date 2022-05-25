@@ -7,9 +7,13 @@ import alfy from "alfy";
     let queryBuilder = new QueryBuilder(alfy.input);
     let query = queryBuilder.call();
 
+    if(!query.isQueryExist){
+      alfy.output([{ title: "The key is no exit...", subtitle: "", arg: "" }]);
+      return;
+    }
     let salesforce = new Salesforce();
     await salesforce.set();
-    let result = await salesforce.call(query);
+    let result = await salesforce.call(query.query);
     let object = "Account";
 
     alfy.output(

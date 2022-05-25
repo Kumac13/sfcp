@@ -2,16 +2,17 @@ import { Salesforce } from "./Salesforce.js";
 import { QueryBuilder } from "./QueryBuilder.js";
 import alfy from "alfy";
 (async () => {
-    // Alfredからinputを受け取る
     if (alfy.input.length > 0) {
         let queryBuilder = new QueryBuilder(alfy.input);
         let query = queryBuilder.call();
-        // SalesforceにQueryを渡して結果を得る
+        if (!query.isQueryExist) {
+            alfy.output([{ title: "The key is no exit...", subtitle: "", arg: "" }]);
+            return;
+        }
         let salesforce = new Salesforce();
         await salesforce.set();
-        let result = await salesforce.call(query);
+        let result = await salesforce.call(query.query);
         let object = "Account";
-        // Alfredに結果を表示
         alfy.output(result.map((x) => ({
             title: x.Name,
             subtitle: x.Id,

@@ -4,10 +4,18 @@ export class QueryBuilder {
         this.input = input;
     }
     call() {
+        let result = {
+            isQueryExist: false,
+            query: '',
+            object: "Account",
+        };
         let queryConfig = this.getConfig();
         let selectedQuery = this.querySelect(queryConfig);
-        let query = this.creatQuery(selectedQuery, queryConfig.limit);
-        return query;
+        if (selectedQuery !== null) {
+            result.query = this.creatQuery(selectedQuery, queryConfig.limit);
+            result.isQueryExist = true;
+        }
+        return result;
     }
     getConfig() {
         let queryConfig = readConfig("./queryConfig.json");
@@ -20,6 +28,9 @@ export class QueryBuilder {
             if (this.input == condition.key) {
                 queryCondition = condition;
                 return queryCondition;
+            }
+            else {
+                return null;
             }
         }
         return queryCondition;

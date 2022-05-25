@@ -11,14 +11,28 @@ type QueryConfig = {
   queryConditions: Array<QueryCondition>;
 };
 
+type Query = {
+  isQueryExist: boolean;
+  query: string;
+  object: string;
+};
+
 export class QueryBuilder {
   constructor(private readonly input: string) {}
 
-  public call(): string {
+  public call(): Query {
+    let result = {
+      isQueryExist: false,
+      query: '',
+      object: "Account",
+    };
     let queryConfig = this.getConfig();
     let selectedQuery = this.querySelect(queryConfig);
-    let query = this.creatQuery(selectedQuery, queryConfig.limit);
-    return query;
+    if (selectedQuery !== null) {
+      result.query = this.creatQuery(selectedQuery, queryConfig.limit);
+      result.isQueryExist = true
+    }
+    return result;
   }
 
   private getConfig(): QueryConfig {
@@ -26,13 +40,15 @@ export class QueryBuilder {
     return queryConfig;
   }
 
-  private querySelect(queryConfig: QueryConfig): QueryCondition {
+  private querySelect(queryConfig: QueryConfig): QueryCondition | null {
     let queryConditions: Array<QueryCondition> = queryConfig.queryConditions;
     let queryCondition: QueryCondition = { key: "", object: "", condition: "" };
     for (let condition of queryConditions) {
       if (this.input == condition.key) {
         queryCondition = condition;
         return queryCondition;
+      } else {
+        return null
       }
     }
     return queryCondition;
