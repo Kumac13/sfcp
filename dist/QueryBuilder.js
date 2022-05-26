@@ -4,19 +4,15 @@ export class QueryBuilder {
         this.input = input;
     }
     call() {
-        let result = {
-            isQueryExist: false,
-            query: "",
-            object: ""
-        };
         let queryConfig = this.getConfig();
         let selectedQuery = this.querySelect(queryConfig);
-        if (selectedQuery !== null) {
-            result.query = this.creatQuery(selectedQuery, queryConfig.limit);
-            result.isQueryExist = true;
-            result.object = selectedQuery.object;
+        if (selectedQuery == null) {
+            return null;
         }
-        return result;
+        return {
+            query: this.creatQuery(selectedQuery, queryConfig.limit),
+            object: selectedQuery.object
+        };
     }
     getConfig() {
         let queryConfig = readConfig("./queryConfig.json");

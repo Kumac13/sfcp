@@ -5,11 +5,11 @@ import alfy from "alfy";
     if (alfy.input.length > 0) {
         let queryBuilder = new QueryBuilder(alfy.input);
         let query = queryBuilder.call();
-        let object = query.object;
-        if (!query.isQueryExist) {
+        if (query == null) {
             alfy.output([{ title: "The key is no exit...", subtitle: "", arg: "" }]);
             return;
         }
+        let object = query.object;
         let salesforce = new Salesforce();
         await salesforce.set();
         let result = await salesforce.call(query.query);
