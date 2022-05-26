@@ -5,12 +5,17 @@ export class Salesforce {
         this.conn = new jsforce.Connection({ loginUrl: "https://login.salesforce.com" });
         this.userConfig = readConfig("./config.json");
     }
+    static async initializeAndLogin() {
+        const salesforce = new Salesforce();
+        await salesforce.login();
+        return salesforce;
+    }
     async set() {
         await this.login();
     }
     async call(query) {
         const queryResult = await this.conn.query(query);
-        let records = queryResult["records"];
+        const records = queryResult["records"];
         return records;
     }
     async login() {

@@ -11,9 +11,15 @@ export class Salesforce {
   private conn: jsforce.Connection;
   private userConfig: UserConfig;
 
-  constructor() {
+  private constructor() {
     this.conn = new jsforce.Connection({loginUrl: "https://login.salesforce.com"})
     this.userConfig  = readConfig("./config.json")
+  }
+
+  public static async initializeAndLogin(): Promise<Salesforce>{
+    const salesforce = new Salesforce()
+    await salesforce.login()
+    return salesforce;
   }
 
   public async set(){
@@ -22,7 +28,7 @@ export class Salesforce {
 
   public async call(query: string): Promise<any[]> {
     const queryResult = await this.conn.query(query);
-    let records: any[] = queryResult["records"];
+    const records: any[] = queryResult["records"];
     return records;
   }
 

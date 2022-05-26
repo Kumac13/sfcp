@@ -4,8 +4,8 @@ export class QueryBuilder {
         this.input = input;
     }
     call() {
-        let queryConfig = this.getConfig();
-        let selectedQuery = this.querySelect(queryConfig);
+        const queryConfig = this.getConfig();
+        const selectedQuery = this.querySelect(queryConfig);
         if (selectedQuery == null) {
             return null;
         }
@@ -20,7 +20,7 @@ export class QueryBuilder {
     }
     querySelect(queryConfig) {
         let result = null;
-        let queryConditions = queryConfig.queryConditions;
+        const queryConditions = queryConfig.queryConditions;
         for (let condition of queryConditions) {
             if (this.input == condition.key) {
                 result = condition;
@@ -30,7 +30,7 @@ export class QueryBuilder {
         return result;
     }
     creatQuery(queryConidition, limit) {
-        let result = `SELECT Id, Name FROM ${queryConidition.object} ${queryConidition.condition} Limit ${limit}`;
+        const result = `SELECT Id, Name FROM ${queryConidition.object} ${queryConidition.condition} Limit ${limit}`;
         return result;
     }
 }

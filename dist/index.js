@@ -3,16 +3,15 @@ import { QueryBuilder } from "./QueryBuilder.js";
 import alfy from "alfy";
 (async () => {
     if (alfy.input.length > 0) {
-        let queryBuilder = new QueryBuilder(alfy.input);
-        let query = queryBuilder.call();
+        const queryBuilder = new QueryBuilder(alfy.input);
+        const query = queryBuilder.call();
         if (query == null) {
             alfy.output([{ title: "The key is no exit...", subtitle: "", arg: "" }]);
             return;
         }
-        let object = query.object;
-        let salesforce = new Salesforce();
-        await salesforce.set();
-        let result = await salesforce.call(query.query);
+        const object = query.object;
+        const salesforce = await Salesforce.initializeAndLogin();
+        const result = await salesforce.call(query.query);
         alfy.output(result.map((x) => ({
             title: x.Name,
             subtitle: x.Id,
